@@ -4,7 +4,18 @@ const StringDecoder = require("string_decoder").StringDecoder;
 
 const env = require("./config");
 
+// httpServer
 const httpServer = http.createServer((req, res) => {
+    server(req, res);
+});
+
+httpServer.listen(env.httpPort, () => {
+    console.log(
+        `Server running at port ${env.httpPort} in ${env.envName} environment....!!!`
+    );
+});
+
+const server = (req, res) => {
     // get the url from the request and parse it
     const parsedUrl = url.parse(req.url, true);
 
@@ -59,13 +70,7 @@ const httpServer = http.createServer((req, res) => {
             res.end(payloadString);
         });
     });
-});
-
-httpServer.listen(env.httpPort, () => {
-    console.log(
-        `Server running at port ${env.httpPort} in ${env.envName} environment....!!!`
-    );
-});
+};
 
 // handlers
 const handlers = {};
