@@ -2,7 +2,7 @@ const http = require("http");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
 
-const env = require("./config");
+const env = require("./lib/config");
 const handlers = require("./lib/handlers");
 
 // httpServer
