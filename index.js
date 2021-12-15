@@ -3,6 +3,7 @@ const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
 
 const env = require("./config");
+const handlers = require("./lib/handlers");
 
 // httpServer
 const httpServer = http.createServer((req, res) => {
@@ -72,19 +73,9 @@ const server = (req, res) => {
     });
 };
 
-// handlers
-const handlers = {};
-
-handlers.sample = (data, callback) => {
-    // callback(statusCode, payload)
-    callback(406, { name: "sample handler" });
-};
-
-handlers.notFound = (data, callback) => {
-    callback(404);
-};
-
 // router
 const router = {
     sample: handlers.sample,
+    ping: handlers.ping,
+    users: handlers.users,
 };
